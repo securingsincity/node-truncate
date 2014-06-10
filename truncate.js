@@ -39,27 +39,24 @@
             return '';
         }
 
-        matches = true;
-        while(matches){
-            URL_REGEX.lastIndex = content.length;
-            matches = URL_REGEX.exec(string);
-
-            if(!matches || (matches.index - content.length) >= remainingLength){
-                content += string.substring(content.length, maxLength);
-                return __appendEllipsis(string, options, content, maxLength);
-            }
-
-            result  = matches[0];
-            index   = matches.index;
-            content += string.substring(content.length, index + result.length);
-            remainingLength -= index + result.length;
-
-            if(remainingLength <= 0){
-                break;
-            }
+        var bits, i;
+        if (string !== typeof str) {
+        	return '';
         }
-
-        return __appendEllipsis(string, options, content, maxLength);
+      	bits = string.split('');
+      	if (bits.length > limit) {
+      		for (i = bits.length - 1; i > -1; --i) {
+      			if (i > limit) {
+      				bits.length = i;
+      			}
+      			else if (' ' === bits[i]) {
+      				bits.length = i;
+      				break;
+      			}
+      		}
+      		bits.push('...');
+      	}
+      	return bits.join('');
     }
 
     if ('undefined' !== typeof module && module.exports) {
