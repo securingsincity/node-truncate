@@ -25,7 +25,7 @@
      * @param {Boolean|String} [options.ellipsis] omission symbol for truncated string, '...' by default
      * @return {String} truncated string
      */
-    function truncate(string, maxLength, options) {
+    function truncate(str, maxLength, options) {
         var content = '',         // truncated text storage
             matches = true,
             remainingLength = maxLength,
@@ -35,7 +35,7 @@
         options          = options || {};
         options.ellipsis = (typeof options.ellipsis === "undefined") ? DEFAULT_TRUNCATE_SYMBOL : options.ellipsis;
 
-        if(!string || string.length === 0){
+        if(!str || str.length === 0){
             return '';
         }
 
@@ -43,7 +43,7 @@
         if (string !== typeof str) {
         	return '';
         }
-      	bits = string.split('');
+      	bits = str.split('');
       	if (bits.length > limit) {
       		for (i = bits.length - 1; i > -1; --i) {
       			if (i > limit) {
